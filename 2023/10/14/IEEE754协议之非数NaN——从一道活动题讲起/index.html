@@ -16,22 +16,22 @@
   <meta name="author" content="破易Poi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="事情要从一道北邮百团大战的娱乐题讲起…. 1234567import randompassword &#x3D; random.random()val &#x3D; float(input())if not (val &gt; password) and not (val &lt; password):    print(&quot;Welcome to my blog&quot;)else:    print(&amp;q">
+    <meta name="description" content="事情要从一道北邮百团大战的娱乐题讲起….  1234567import randompassword &#x3D; random.random()val &#x3D; float(input())if not (val &gt; password) and not (val &lt; password):    print(&quot;Welcome to my blog&quot;)else:    print(&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IEEE754协议之非数NaN——从一道活动题讲起">
-<meta property="og:url" content="https://py-thok.github.io/2023/10/14/IEEE754%E5%8D%8F%E8%AE%AE%E2%80%94%E2%80%94%E4%BB%8E%E4%B8%80%E9%81%93%E6%B4%BB%E5%8A%A8%E9%A2%98%E8%AE%B2%E8%B5%B7/index.html">
+<meta property="og:url" content="https://py-thok.github.io/2023/10/14/IEEE754%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%9D%9E%E6%95%B0NaN%E2%80%94%E2%80%94%E4%BB%8E%E4%B8%80%E9%81%93%E6%B4%BB%E5%8A%A8%E9%A2%98%E8%AE%B2%E8%B5%B7/index.html">
 <meta property="og:site_name" content="Poi!">
-<meta property="og:description" content="事情要从一道北邮百团大战的娱乐题讲起…. 1234567import randompassword &#x3D; random.random()val &#x3D; float(input())if not (val &gt; password) and not (val &lt; password):    print(&quot;Welcome to my blog&quot;)else:    print(&amp;q">
+<meta property="og:description" content="事情要从一道北邮百团大战的娱乐题讲起….  1234567import randompassword &#x3D; random.random()val &#x3D; float(input())if not (val &gt; password) and not (val &lt; password):    print(&quot;Welcome to my blog&quot;)else:    print(&amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="d:\Blog\source\img\blog1\3XKQ[]W~$G7I6G5PK@$6E$D.png">
+<meta property="og:image" content="https://py-thok.github.io/2023/10/14/IEEE754%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%9D%9E%E6%95%B0NaN%E2%80%94%E2%80%94%E4%BB%8E%E4%B8%80%E9%81%93%E6%B4%BB%E5%8A%A8%E9%A2%98%E8%AE%B2%E8%B5%B7/1.png">
 <meta property="article:published_time" content="2023-10-14T14:54:53.000Z">
-<meta property="article:modified_time" content="2023-10-14T16:04:11.271Z">
+<meta property="article:modified_time" content="2023-10-14T16:15:11.208Z">
 <meta property="article:author" content="破易Poi">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Crypto">
 <meta property="article:tag" content="Misc">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="d:\Blog\source\img\blog1\3XKQ[]W~$G7I6G5PK@$6E$D.png">
+<meta name="twitter:image" content="https://py-thok.github.io/2023/10/14/IEEE754%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%9D%9E%E6%95%B0NaN%E2%80%94%E2%80%94%E4%BB%8E%E4%B8%80%E9%81%93%E6%B4%BB%E5%8A%A8%E9%A2%98%E8%AE%B2%E8%B5%B7/1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -279,7 +279,8 @@
             
               <div class="markdown-body">
                 
-                <h4 id="事情要从一道北邮百团大战的娱乐题讲起…"><a href="#事情要从一道北邮百团大战的娱乐题讲起…" class="headerlink" title="事情要从一道北邮百团大战的娱乐题讲起…."></a>事情要从一道北邮百团大战的娱乐题讲起….</h4><p><img src="D:\Blog\source\img\blog1\3XKQ[]W~$G7I6G5PK@$6E$D.png" srcset="/img/loading.gif" lazyload alt="3XKQ[]W~$G7I6G5PK@$6E$D"></p>
+                <h4 id="事情要从一道北邮百团大战的娱乐题讲起…"><a href="#事情要从一道北邮百团大战的娱乐题讲起…" class="headerlink" title="事情要从一道北邮百团大战的娱乐题讲起…."></a>事情要从一道北邮百团大战的娱乐题讲起….</h4><img src="/2023/10/14/IEEE754%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%9D%9E%E6%95%B0NaN%E2%80%94%E2%80%94%E4%BB%8E%E4%B8%80%E9%81%93%E6%B4%BB%E5%8A%A8%E9%A2%98%E8%AE%B2%E8%B5%B7/1.png" srcset="/img/loading.gif" lazyload class="" title="example">
+
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">import</span> random<br>password = random.random()<br>val = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>())<br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (val &gt; password) <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> (val &lt; password):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Welcome to my blog&quot;</span>)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Access denied&quot;</span>)<br></code></pre></td></tr></table></figure>
 
 <p>当时我心想，娱乐题而已，应该很简单吧，结果就是做了一个下午没想出来…</p>
@@ -297,8 +298,7 @@
 </ol>
 <p>关于IEEE754的移码，真值等详细规则，网上的大牛们已经写的很好了，我就不复制粘贴了…</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_47713503/article/details/108699001">clickme</a></p>
-<p>NaN是什么？</p>
-<p>NaN是未定义或无法表示的数据类型的特定值。</p>
+<h4 id="NaN是什么？"><a href="#NaN是什么？" class="headerlink" title="NaN是什么？"></a>NaN是什么？</h4><p>NaN是未定义或无法表示的数据类型的特定值。</p>
 <p>例如0&#x2F;0通常无定义，就可以用NaN来表示。</p>
 <p>实数域内负数平方根无解，负数对数结果复杂，反余弦&#x2F;正弦定义域小于-1或大于1，亦可用NaN表示。</p>
 <p>正负无穷大，NaN参与计算时，计算结果常常用NaN来表示。</p>
@@ -328,7 +328,7 @@
 </tbody></table>
 <p>显然，这道脑筋急转弯就利用了NaN与任何数做大小比较都为False的特性。</p>
 <p>同理，在IEEE754中，NaN也是唯一一个自身不等于自身的“数”，唯一一个不等于任何数的数，需注意，与常规数学定义不同的是，float“inf“（即无穷大）也等于自身。</p>
-<p>所以这题的答案即为NaN。</p>
+<p><strong>所以这题的答案即为NaN。</strong></p>
 <p>一道知识面题，会的会，不会的不会，令人感叹。</p>
 <p>下面给出INF（无穷大）的比较。</p>
 <table>
@@ -371,7 +371,7 @@
 <td align="left">False</td>
 </tr>
 </tbody></table>
-<p>持续写作，欢迎关注。</p>
+<p><strong>持续写作，欢迎关注。</strong></p>
 
                 
               </div>
@@ -401,7 +401,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>IEEE754协议之非数NaN——从一道活动题讲起</div>
-      <div>https://py-thok.github.io/2023/10/14/IEEE754协议——从一道活动题讲起/</div>
+      <div>https://py-thok.github.io/2023/10/14/IEEE754协议之非数NaN——从一道活动题讲起/</div>
     </div>
     <div class="license-meta">
       
