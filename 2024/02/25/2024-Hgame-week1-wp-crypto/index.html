@@ -1,0 +1,715 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#11d4b7">
+  <meta name="author" content="破易Poi">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="2024-Hgame-week1-wp-crypto简单写写。 ezRSA题目描述：一个简单的RSA 1234567891011121314151617181920212223from Crypto.Util.number import *from secret import flagm&#x3D;bytes_to_long(flag)p&#x3D;getPrime(1024)q&#x3D;getPrime(1024)n&#x3D;p*">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Poi!">
+<meta property="og:url" content="https://py-thok.github.io/2024/02/25/2024-Hgame-week1-wp-crypto/index.html">
+<meta property="og:site_name" content="Poi!">
+<meta property="og:description" content="2024-Hgame-week1-wp-crypto简单写写。 ezRSA题目描述：一个简单的RSA 1234567891011121314151617181920212223from Crypto.Util.number import *from secret import flagm&#x3D;bytes_to_long(flag)p&#x3D;getPrime(1024)q&#x3D;getPrime(1024)n&#x3D;p*">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://py-thok.github.io/2024-Hgame-week1-wp-crypto/%7B6C255CD5-0DAC-4c2e-A0B5-9CF027692669%7D-17088438143304.png">
+<meta property="article:published_time" content="2024-02-25T06:05:54.772Z">
+<meta property="article:modified_time" content="2024-02-25T07:09:18.196Z">
+<meta property="article:author" content="破易Poi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://py-thok.github.io/2024-Hgame-week1-wp-crypto/%7B6C255CD5-0DAC-4c2e-A0B5-9CF027692669%7D-17088438143304.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Poi!</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"py-thok.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>POI!</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-02-25 14:05" pubdate>
+          2024年2月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          18k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          149 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="2024-Hgame-week1-wp-crypto"><a href="#2024-Hgame-week1-wp-crypto" class="headerlink" title="2024-Hgame-week1-wp-crypto"></a>2024-Hgame-week1-wp-crypto</h1><p>简单写写。</p>
+<h3 id="ezRSA"><a href="#ezRSA" class="headerlink" title="ezRSA"></a>ezRSA</h3><p>题目描述：一个简单的RSA</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> secret <span class="hljs-keyword">import</span> flag<br>m=bytes_to_long(flag)<br>p=getPrime(<span class="hljs-number">1024</span>)<br>q=getPrime(<span class="hljs-number">1024</span>)<br>n=p*q<br>phi=(p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>)<br>e=<span class="hljs-number">0x10001</span><br>c=<span class="hljs-built_in">pow</span>(m,e,n)<br>leak1=<span class="hljs-built_in">pow</span>(p,q,n)<br>leak2=<span class="hljs-built_in">pow</span>(q,p,n)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;leak1=<span class="hljs-subst">&#123;leak1&#125;</span>&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;leak2=<span class="hljs-subst">&#123;leak2&#125;</span>&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;c=<span class="hljs-subst">&#123;c&#125;</span>&#x27;</span>)<br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string"></span><br><span class="hljs-string">leak1=149127170073611271968182576751290331559018441805725310426095412837589227670757540743929865853650399839102838431507200744724939659463200158012469676979987696419050900842798225665861812331113632892438742724202916416060266581590169063867688299288985734104127632232175657352697898383441323477450658179727728908669</span><br><span class="hljs-string">leak2=116122992714670915381309916967490436489020001172880644167179915467021794892927977272080596641785569119134259037522388335198043152206150259103485574558816424740204736215551933482583941959994625356581201054534529395781744338631021423703171146456663432955843598548122593308782245220792018716508538497402576709461</span><br><span class="hljs-string">c=10529481867532520034258056773864074017027019578041866245400647840230251661652999709715919620810933437191661180003295923273655675729588558899592524235622728816065501918076120812236580344991140980991532347991252705288633014913479970610056845543523591324177567061948922552275235486615514913932125436543991642607028689762693617305246716492783116813070355512606971626645594961850567586340389705821314842096465631886812281289843132258131809773797777049358789182212570606252509790830994263132020094153646296793522975632191912463919898988349282284972919932761952603379733234575351624039162440021940592552768579639977713099971</span><br><span class="hljs-string"></span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>$p$和$q$互素，所以由费马小定理<br>$$<br>p^{q-1} \equiv 1 \quad(\bmod q)<br>$$<br>转化一下。<br>$$<br>p^{q} \equiv p \quad(\bmod pq)<br>$$<br>所以leak1&#x3D;p， leak2&#x3D;q.</p>
+<p>比较简单。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br>leak1=<span class="hljs-number">1491271700736112719681825767512903315590184418057253104260954128375892276</span><br><span class="hljs-number">7075754074392986585365039983910283843150720074472493965946320015801246967697998</span><br><span class="hljs-number">7696419050900842798225665861812331113632892438742724202916416060266581590169063</span><br><span class="hljs-number">867688299288985734104127632232175657352697898383441323477450658179727728908669</span><br>leak2=<span class="hljs-number">1161229927146709153813099169674904364890200011728806441671799154670217948</span><br><span class="hljs-number">9292797727208059664178556911913425903752238833519804315220615025910348557455881</span><br><span class="hljs-number">6424740204736215551933482583941959994625356581201054534529395781744338631021423</span><br><span class="hljs-number">703171146456663432955843598548122593308782245220792018716508538497402576709461</span><br>c=<span class="hljs-number">10529481867532520034258056773864074017027019578041866245400647840230251661652</span><br><span class="hljs-number">9997097159196208109334371916611800032959232736556757295885588995925242356227288</span><br><span class="hljs-number">1606550191807612081223658034499114098099153234799125270528863301491347997061005</span><br><span class="hljs-number">6845543523591324177567061948922552275235486615514913932125436543991642607028689</span><br><span class="hljs-number">7626936173052467164927831168130703555126069716266455949618505675863403897058213</span><br><span class="hljs-number">1484209646563188681228128984313225813180977379777704935878918221257060625250979</span><br>0830994263132020094153646296793522975632191912463919898988349282284972919932761<br><span class="hljs-number">952603379733234575351624039162440021940592552768579639977713099971</span><br>n=leak1*leak2<br>phi=(leak1-<span class="hljs-number">1</span>)*(leak2-<span class="hljs-number">1</span>)<br>d=inverse(<span class="hljs-number">0x10001</span>,phi)<br>flag=long_to_bytes(<span class="hljs-built_in">pow</span>(c,d,n))<br><span class="hljs-built_in">print</span>(flag)<br></code></pre></td></tr></table></figure>
+
+<h3 id="ezMath"><a href="#ezMath" class="headerlink" title="ezMath"></a>ezMath</h3><p>题目描述：一个简单的数学题</p>
+<p>pell方程与连分数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br><span class="hljs-keyword">import</span> random,string<br><span class="hljs-keyword">from</span> secret <span class="hljs-keyword">import</span> flag,y,x<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">pad</span>(<span class="hljs-params">x</span>):<br>    <span class="hljs-keyword">return</span> x+<span class="hljs-string">b&#x27;\x00&#x27;</span>*(<span class="hljs-number">16</span>-<span class="hljs-built_in">len</span>(x)%<span class="hljs-number">16</span>)<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">encrypt</span>(<span class="hljs-params">KEY</span>):<br>    cipher= AES.new(KEY,AES.MODE_ECB)<br>    encrypted =cipher.encrypt(flag)<br>    <span class="hljs-keyword">return</span> encrypted<br>D = <span class="hljs-number">114514</span><br><span class="hljs-keyword">assert</span> x**<span class="hljs-number">2</span> - D * y**<span class="hljs-number">2</span> == <span class="hljs-number">1</span><br>flag=pad(flag)<br>key=pad(long_to_bytes(y))[:<span class="hljs-number">16</span>]<br>enc=encrypt(key)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;enc=<span class="hljs-subst">&#123;enc&#125;</span>&#x27;</span>)<br><span class="hljs-comment">#enc=b&quot;\xce\xf1\x94\x84\xe9m\x88\x04\xcb\x9ad\x9e\x08b\xbf\x8b\xd3\r\xe2\x81\x17g\x9c\xd7\x10\x19\x1a\xa6\xc3\x9d\xde\xe7\xe0h\xed/\x00\x95tz)1\\\t8:\xb1,U\xfe\xdec\xf2h\xab`\xe5&#x27;\x93\xf8\xde\xb2\x9a\x9a&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>引用一下oiwiki。</p>
+<p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/number-theory/pell-equation/">Pell 方程 - OI Wiki (oi-wiki.org)</a></p>
+<p>定理：记 $x^{2}-D y^{2}&#x3D;s$<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" srcset="/img/loading.gif" lazyload alt="x^2−Dy^2=s">。如果有$|s|&lt;\sqrt{D}$，则$\frac{x}{y}$ 一定是$\sqrt{D}$的渐进分数。</p>
+<p>证明：分情况讨论。</p>
+<p>当$s&gt;0$时，根据，$x^{2}-D y^{2}&gt;0$，有$x&gt;y\sqrt{D}$。并且有<br>$$<br>\begin{aligned}\left|\frac xy-\sqrt{D}\right|&amp;&#x3D;\frac s{y(x+y\sqrt{D})}&lt;\frac s{2y^2\sqrt{D}}&lt;\frac1{2y^2}\end{aligned}<br>$$<br>此时根据勒让德判别法，$\frac{x}{y}$是$\sqrt{D}$的渐进分数。</p>
+<p>#怎么判别的？</p>
+<p><img src="/2024-Hgame-week1-wp-crypto/%7B6C255CD5-0DAC-4c2e-A0B5-9CF027692669%7D-17088438143304.png" srcset="/img/loading.gif" lazyload alt="{6C255CD5-0DAC-4c2e-A0B5-9CF027692669}"></p>
+<p>摘自《公钥密码学的数学基础》。</p>
+<p>所以直接在sagemath跑连分数即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br>enc=<span class="hljs-string">b&quot;\xce\xf1\x94\x84\xe9m\x88\x04\xcb\x9ad\x9e\x08b\xbf\x8b\xd3\r\xe2\x81\x17</span><br><span class="hljs-string">g\x9c\xd7\x10\x19\x1a\xa6\xc3\x9d\xde\xe7\xe0h\xed/\x00\x95tz)1\\\t8:\xb1,U\xfe</span><br><span class="hljs-string">\xdec\xf2h\xab`\xe5&#x27;\x93\xf8\xde\xb2\x9a\x9a&quot;</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">solve_pell</span>(<span class="hljs-params">N, num = <span class="hljs-number">100</span></span>):<br>c = continued_fraction(sqrt(N))<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num):<br>y = c.denominator(i)<br>x = c.numerator(i)<br><span class="hljs-keyword">if</span> x^<span class="hljs-number">2</span> - N * y^<span class="hljs-number">2</span> == <span class="hljs-number">1</span>:<br><span class="hljs-keyword">return</span> x, y<br><span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>, <span class="hljs-literal">None</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">pad</span>(<span class="hljs-params">x</span>):<br><span class="hljs-keyword">return</span> x+<span class="hljs-string">b&#x27;\x00&#x27;</span>*((<span class="hljs-number">16</span>-<span class="hljs-built_in">len</span>(x))%<span class="hljs-number">16</span>)<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">decrypt</span>(<span class="hljs-params">KEY</span>):<br>cipher= AES.new(KEY,AES.MODE_ECB)<br>flag =cipher.decrypt(enc)<br><span class="hljs-keyword">return</span> flag<br>N = <span class="hljs-number">114514</span><br>x,y=solve_pell(N)<br><span class="hljs-built_in">print</span>(x,y)<br>y=pad(long_to_bytes(y))[:<span class="hljs-number">16</span>]<br>flag=decrypt(y)<br><span class="hljs-built_in">print</span>(flag)<br></code></pre></td></tr></table></figure>
+
+<h3 id="ezPRNG"><a href="#ezPRNG" class="headerlink" title="ezPRNG"></a>ezPRNG</h3><p>题目描述：一个简单的随机数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">import</span> uuid<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">PRNG</span>(<span class="hljs-params">R,mask</span>):<br>    nextR = (R &lt;&lt; <span class="hljs-number">1</span>) &amp; <span class="hljs-number">0xffffffff</span><br>    i=(R&amp;mask)&amp;<span class="hljs-number">0xffffffff</span><br>    nextbit=<span class="hljs-number">0</span><br>    <span class="hljs-keyword">while</span> i!=<span class="hljs-number">0</span>:<br>        nextbit^=(i%<span class="hljs-number">2</span>)<br>        i=i//<span class="hljs-number">2</span><br>    nextR^=nextbit <br>    <span class="hljs-keyword">return</span> (nextR,nextbit)<br><br>R=<span class="hljs-built_in">str</span>(uuid.uuid4())<br>flag=<span class="hljs-string">&#x27;hgame&#123;&#x27;</span>+R+<span class="hljs-string">&#x27;&#125;&#x27;</span><br><span class="hljs-built_in">print</span>(flag)<br>R=R.replace(<span class="hljs-string">&#x27;-&#x27;</span>,<span class="hljs-string">&#x27;&#x27;</span>)<br>Rlist=[<span class="hljs-built_in">int</span>(R[i*<span class="hljs-number">8</span>:i*<span class="hljs-number">8</span>+<span class="hljs-number">8</span>],<span class="hljs-number">16</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>)]<br><br>mask=<span class="hljs-number">0b10001001000010000100010010001001</span><br>output=[]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):<br>    R=Rlist[i]<br>    out=<span class="hljs-string">&#x27;&#x27;</span><br>    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1000</span>):<br>        (R,nextbit)=PRNG(R,mask)<br>        out+=<span class="hljs-built_in">str</span>(nextbit)<br>    output.append(out)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;output=<span class="hljs-subst">&#123;output&#125;</span>&#x27;</span>)<br><span class="hljs-comment">#output=[&#x27;1111110110111011110000101011010001000111111001111110100101000011110111111100010000111110110111100001001000101101011110111100010010100000011111101101110101011010111000000011110000100011101111011011000100101100110100101110001010001101101110000010001000111100101010010110110111101110011011001011111011010101011000011011000111011011111001101010111100101100110001011010010101110011101001100111000011110111000001101110000001111100000100000101111100010110111001110011010000011011110110011000001101011111111010110011010111010101001000010011110110011110110101011110111010011010010110111111010011101000110101111101111000110011111110010110000100100100101101010101110010101001101010101011110111010011101110000100101111010110101111110001111111110010000000001110011100100001011111110100111011000101001101001110010010001100011000001101000111010010000101101111101011000000101000001110001011001010010001000011000000100010010010010111010011111111011100100100100101111111001110000111110110001111001111100101001001100010&#x27;, &#x27;0010000000001010111100001100011101111101111000100100111010101110010110011001011110101100011101010000001100000110000000011000000110101111111011100100110111011010000100011111000111001000101001110010110010001000110010101011110011101000011111101101011000011110001101011111000110111000011000110011100100101100111100000100100101111001011101110001011011111111011010100010111011000010010101110110100000110100000100010101000010111101001000011000000000111010010101010111101101011111011001000101000100011001100101010110110001010010001010110111011011111101011100111001101111111111010011101111010010011110011111110100110011111110110001000111100010111000101111000011011011111101110101110100111000011100001010110111100011001011010011010111000110101100110100011101101011101000111011000100110110001100110101010110010011011110000111110100111101110000100010000111100010111000010000010001111110110100001000110110100100110110010110111010011111101011110000011101010100110101011110000110101110111011010110110000010000110001&#x27;, &#x27;1110110110010001011100111110111110111001111101010011001111100100001000111001101011010100010111110101110101111010111100101100010011001001011101000101011000110111000010000101001000100111010110001010000111110110111000011001100010001101000010001111111100000101111000100101000000001001001001101110000100111001110001001011010111111010111101101101001110111010111110110011001000010001010100010010110110101011100000101111100100110011110001001001111100101111001111011011010111001001111010001100110001100001100000110000011111010100101111000000101011111010000111110000101111100010000010010111010110100101010101001111100101011100011001001011000101010101001101100010110000010001110011110011100111000110101010111010011010000001100001011000011101101000000011111000101111101011110011000011011000100100110111010011001111101100101100011000101001110101111001000010110010111101110110010101101000000101001011000000001110001110000100000001001111100011010011000000011011101111101001111110001011101100000010001001010011000001&#x27;, &#x27;0001101010101010100001001001100010000101010100001010001000100011101100110001001100001001110000110100010101111010110111001101011011101110000011001000100100101000011011101000111001001010011100010001010110111011100100111110111001010010111010100000100111110101110010010110100001000010010001101111001110100010001011101100111011101011101100100101011010101000101001000101110011011111110110011111111100000000011100000010011000110001000110101010001011000010101000110000101001110101010111011010010111011001010011100010101001100110000110101100010000100110101110100001101001011011110011100110011001010110100101010111110110111100000111010001111101110000000000111011011101000011001010010111001110111000100111011110100101000100011011101100011111000101110110110111111001111000000011100011000010000101001011001101110101000010101001000100110010000101001111100101000001011011010011110001101000001101111010100101001100010100000111000011110101010100011011001110001011110111010111011010101101100000110000001010010101111011&#x27;]</span><br></code></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/181811">深入分析CTF中的LFSR类题目（一）-安全客 - 安全资讯平台 (anquanke.com)</a></p>
+<p>几乎是原题。</p>
+<p>上面的链接其实讲的很清楚了hh，我就不东施效颦了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br>output=[<span class="hljs-string">&#x27;1111110110111011110000101011010001000111111001111110100101000011110111111100010000111110110111100001001000101101011110111100010010100000011111101101110101011010111000000011110000100011101111011011000100101100110100101110001010001101101110000010001000111100101010010110110111101110011011001011111011010101011000011011000111011011111001101010111100101100110001011010010101110011101001100111000011110111000001101110000001111100000100000101111100010110111001110011010000011011110110011000001101011111111010110011010111010101001000010011110110011110110101011110111010011010010110111111010011101000110101111101111000110011111110010110000100100100101101010101110010101001101010101011110111010011101110000100101111010110101111110001111111110010000000001110011100100001011111110100111011000101001101001110010010001100011000001101000111010010000101101111101011000000101000001110001011001010010001000011000000100010010010010111010011111111011100100100100101111111001110000111110110001111001111100101001001100010&#x27;</span>, <span class="hljs-string">&#x27;0010000000001010111100001100011101111101111000100100111010101110010110011001011110101100011101010000001100000110000000011000000110101111111011100100110111011010000100011111000111001000101001110010110010001000110010101011110011101000011111101101011000011110001101011111000110111000011000110011100100101100111100000100100101111001011101110001011011111111011010100010111011000010010101110110100000110100000100010101000010111101001000011000000000111010010101010111101101011111011001000101000100011001100101010110110001010010001010110111011011111101011100111001101111111111010011101111010010011110011111110100110011111110110001000111100010111000101111000011011011111101110101110100111000011100001010110111100011001011010011010111000110101100110100011101101011101000111011000100110110001100110101010110010011011110000111110100111101110000100010000111100010111000010000010001111110110100001000110110100100110110010110111010011111101011110000011101010100110101011110000110101110111011010110110000010000110001&#x27;</span>, <span class="hljs-string">&#x27;1110110110010001011100111110111110111001111101010011001111100100001000111001101011010100010111110101110101111010111100101100010011001001011101000101011000110111000010000101001000100111010110001010000111110110111000011001100010001101000010001111111100000101111000100101000000001001001001101110000100111001110001001011010111111010111101101101001110111010111110110011001000010001010100010010110110101011100000101111100100110011110001001001111100101111001111011011010111001001111010001100110001100001100000110000011111010100101111000000101011111010000111110000101111100010000010010111010110100101010101001111100101011100011001001011000101010101001101100010110000010001110011110011100111000110101010111010011010000001100001011000011101101000000011111000101111101011110011000011011000100100110111010011001111101100101100011000101001110101111001000010110010111101110110010101101000000101001011000000001110001110000100000001001111100011010011000000011011101111101001111110001011101100000010001001010011000001&#x27;</span>, <span class="hljs-string">&#x27;0001101010101010100001001001100010000101010100001010001000100011101100110001001100001001110000110100010101111010110111001101011011101110000011001000100100101000011011101000111001001010011100010001010110111011100100111110111001010010111010100000100111110101110010010110100001000010010001101111001110100010001011101100111011101011101100100101011010101000101001000101110011011111110110011111111100000000011100000010011000110001000110101010001011000010101000110000101001110101010111011010010111011001010011100010101001100110000110101100010000100110101110100001101001011011110011100110011001010110100101010111110110111100000111010001111101110000000000111011011101000011001010010111001110111000100111011110100101000100011011101100011111000101110110110111111001111000000011100011000010000101001011001101110101000010101001000100110010000101001111100101000001011011010011110001101000001101111010100101001100010100000111000011110101010100011011001110001011110111010111011010101101100000110000001010010101111011&#x27;</span>]<br>flag=<span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):<br>    R = <span class="hljs-string">&#x27;&#x27;</span><br>    key=(output[j])[:<span class="hljs-number">32</span>]<br>    temp=key<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">32</span>):<br>        out = <span class="hljs-string">&#x27;?&#x27;</span>+key[:<span class="hljs-number">31</span>]<br>        ans=<span class="hljs-built_in">int</span>(temp[-<span class="hljs-number">1</span>-i])^<span class="hljs-built_in">int</span>(out[-<span class="hljs-number">1</span>])^<span class="hljs-built_in">int</span>(out[-<span class="hljs-number">4</span>])^<span class="hljs-built_in">int</span>(out[-<span class="hljs-number">8</span>])^<span class="hljs-built_in">int</span>(out[-<span class="hljs-number">11</span>])^<span class="hljs-built_in">int</span>(out[-<span class="hljs-number">15</span>])^<span class="hljs-built_in">int</span>(out[-<span class="hljs-number">20</span>])^<span class="hljs-built_in">int</span>(out[-<span class="hljs-number">25</span>])^<span class="hljs-built_in">int</span>(out[-<span class="hljs-number">28</span>])<br>        R += <span class="hljs-built_in">str</span>(ans)<br>        key = <span class="hljs-built_in">str</span>(ans) + key[:<span class="hljs-number">31</span>]<br>    R = <span class="hljs-built_in">format</span>(<span class="hljs-built_in">int</span>(R[::-<span class="hljs-number">1</span>],<span class="hljs-number">2</span>),<span class="hljs-string">&#x27;x&#x27;</span>)<br>    flag+=R<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;hgame&#123;&#x27;</span>+flag+<span class="hljs-string">&#x27;&#125;&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="奇怪的图片"><a href="#奇怪的图片" class="headerlink" title="奇怪的图片"></a>奇怪的图片</h3><p>这题挺有意思，包括后面那个奇怪的图片plus，我觉得都很好</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> time<br><br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image, ImageDraw, ImageFont<br><span class="hljs-keyword">import</span> threading<br><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> secrets<br><br><br>flag = <span class="hljs-string">&quot;hgame&#123;fake_flag&#125;&quot;</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_random_image</span>(<span class="hljs-params">width, height</span>):<br>    image = Image.new(<span class="hljs-string">&quot;RGB&quot;</span>, (width, height), <span class="hljs-string">&quot;white&quot;</span>)<br>    pixels = image.load()<br>    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(width):<br>        <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(height):<br>            red = random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>)<br>            green = random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>)<br>            blue = random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>)<br>            pixels[x, y] = (red, green, blue)<br>    <span class="hljs-keyword">return</span> image<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">draw_text</span>(<span class="hljs-params">image, width, height, token</span>):<br>    font_size = random.randint(<span class="hljs-number">16</span>, <span class="hljs-number">40</span>)<br>    font = ImageFont.truetype(<span class="hljs-string">&quot;arial.ttf&quot;</span>, font_size)<br>    text_color = (random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>), random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>), random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>))<br>    x = random.randint(<span class="hljs-number">0</span>, width - font_size * <span class="hljs-built_in">len</span>(token))<br>    y = random.randint(<span class="hljs-number">0</span>, height - font_size)<br>    draw = ImageDraw.Draw(image)<br>    draw.text((x, y), token, font=font, fill=text_color)<br>    <span class="hljs-keyword">return</span> image<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">xor_images</span>(<span class="hljs-params">image1, image2</span>):<br>    <span class="hljs-keyword">if</span> image1.size != image2.size:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;Images must have the same dimensions.&quot;</span>)<br>    xor_image = Image.new(<span class="hljs-string">&quot;RGB&quot;</span>, image1.size)<br>    pixels1 = image1.load()<br>    pixels2 = image2.load()<br>    xor_pixels = xor_image.load()<br>    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(image1.size[<span class="hljs-number">0</span>]):<br>        <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(image1.size[<span class="hljs-number">1</span>]):<br>            r1, g1, b1 = pixels1[x, y]<br>            r2, g2, b2 = pixels2[x, y]<br>            xor_pixels[x, y] = (r1 ^ r2, g1 ^ g2, b1 ^ b2)<br>    <span class="hljs-keyword">return</span> xor_image<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_unique_strings</span>(<span class="hljs-params">n, length</span>):<br>    unique_strings = <span class="hljs-built_in">set</span>()<br>    <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(unique_strings) &lt; n:<br>        random_string = secrets.token_hex(length // <span class="hljs-number">2</span>)<br>        unique_strings.add(random_string)<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">list</span>(unique_strings)<br><br><br>random_strings = generate_unique_strings(<span class="hljs-built_in">len</span>(flag), <span class="hljs-number">8</span>)<br><br><br>current_image = generate_random_image(<span class="hljs-number">120</span>, <span class="hljs-number">80</span>)<br>key_image = generate_random_image(<span class="hljs-number">120</span>, <span class="hljs-number">80</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">random_time</span>(<span class="hljs-params">image, name</span>):<br>    time.sleep(random.random())<br>    image.save(<span class="hljs-string">&quot;.\\png_out\\&#123;&#125;.png&quot;</span>.<span class="hljs-built_in">format</span>(name))<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(flag)):<br>    current_image = draw_text(current_image, <span class="hljs-number">120</span>, <span class="hljs-number">80</span>, flag[i])<br>    threading.Thread(target=random_time, args=(xor_images(current_image, key_image), random_strings[i])).start()<br><br></code></pre></td></tr></table></figure>
+
+<p>大概意思就是</p>
+<p>一张图片，写上一个字，和未知的图片异或，输出。</p>
+<p>然后这张写上一个字的图片，再写上一个字，再和未知图片异或，输出。</p>
+<p>以此类推。</p>
+<p>所以想破解就把一张图片和其他所有图片异或，观察字母的增减即可得到flag</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> time<br><br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image, ImageDraw, ImageFont<br><span class="hljs-keyword">import</span> threading<br><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> secrets<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">xor_images</span>(<span class="hljs-params">image1, image2</span>):<span class="hljs-comment">#图片异或？</span><br>    <span class="hljs-keyword">if</span> image1.size != image2.size:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;Images must have the same dimensions.&quot;</span>)<br>    xor_image = Image.new(<span class="hljs-string">&quot;RGB&quot;</span>, image1.size)<br>    pixels1 = image1.load()<br>    pixels2 = image2.load()<br>    xor_pixels = xor_image.load()<br>    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(image1.size[<span class="hljs-number">0</span>]):<br>        <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(image1.size[<span class="hljs-number">1</span>]):<br>            r1, g1, b1 = pixels1[x, y]<br>            r2, g2, b2 = pixels2[x, y]<br>            xor_pixels[x, y] = (r1 ^ r2, g1 ^ g2, b1 ^ b2)<br>    <span class="hljs-keyword">return</span> xor_image<br><span class="hljs-built_in">list</span> = []<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;1.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;2.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;3.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;4.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;5.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;6.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;7.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;8.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;9.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;10.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;11.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;12.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;13.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;14.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;15.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;16.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;17.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;18.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;19.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;20.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;21.png&#x27;</span>))<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">21</span>):<br>    xor_images(<span class="hljs-built_in">list</span>[<span class="hljs-number">0</span>],<span class="hljs-built_in">list</span>[i]).save(<span class="hljs-string">&quot;1+&quot;</span>+<span class="hljs-built_in">str</span>(i+<span class="hljs-number">1</span>)+<span class="hljs-string">&quot;.png&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>这段代码就是一张图片和其他所有图片异或。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://py-thok.github.io/2024/02/25/2024-Hgame-week1-wp-crypto/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>破易Poi</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年2月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/02/24/%E6%9C%80%E8%BF%91/" title="记录">
+                        <span class="hidden-mobile">记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://silver-crumble-1edb9d.netlify.app/.netlify/functions/twikoo","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
