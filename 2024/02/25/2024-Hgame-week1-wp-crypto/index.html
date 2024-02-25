@@ -18,23 +18,29 @@
   
     <meta name="description" content="2024-Hgame-week1-wp-crypto简单写写。 ezRSA题目描述：一个简单的RSA 1234567891011121314151617181920212223from Crypto.Util.number import *from secret import flagm&#x3D;bytes_to_long(flag)p&#x3D;getPrime(1024)q&#x3D;getPrime(1024)n&#x3D;p*">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Poi!">
+<meta property="og:title" content="2024-Hgame-week1-wp-crypto">
 <meta property="og:url" content="https://py-thok.github.io/2024/02/25/2024-Hgame-week1-wp-crypto/index.html">
 <meta property="og:site_name" content="Poi!">
 <meta property="og:description" content="2024-Hgame-week1-wp-crypto简单写写。 ezRSA题目描述：一个简单的RSA 1234567891011121314151617181920212223from Crypto.Util.number import *from secret import flagm&#x3D;bytes_to_long(flag)p&#x3D;getPrime(1024)q&#x3D;getPrime(1024)n&#x3D;p*">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://py-thok.github.io/2024-Hgame-week1-wp-crypto/%7B6C255CD5-0DAC-4c2e-A0B5-9CF027692669%7D-17088438143304.png">
+<meta property="og:image" content="https://py-thok.github.io/pic/8.png">
+<meta property="og:image" content="https://py-thok.github.io/pic/9.png">
 <meta property="article:published_time" content="2024-02-25T06:05:54.772Z">
-<meta property="article:modified_time" content="2024-02-25T07:09:18.196Z">
+<meta property="article:modified_time" content="2024-02-25T07:26:21.996Z">
 <meta property="article:author" content="破易Poi">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Crypto">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Misc">
+<meta property="article:tag" content="Hgame">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://py-thok.github.io/2024-Hgame-week1-wp-crypto/%7B6C255CD5-0DAC-4c2e-A0B5-9CF027692669%7D-17088438143304.png">
+<meta name="twitter:image" content="https://py-thok.github.io/pic/8.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Poi!</title>
+  <title>2024-Hgame-week1-wp-crypto - Poi!</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +206,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="2024-Hgame-week1-wp-crypto"></span>
           
         </div>
 
@@ -223,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18k 字
+          19k 字
         
       </span>
     
@@ -234,7 +240,7 @@
         
         
         
-          149 分钟
+          163 分钟
         
       </span>
     
@@ -271,7 +277,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">2024-Hgame-week1-wp-crypto</h1>
             
             
               <div class="markdown-body">
@@ -290,11 +296,11 @@
 
 <p>引用一下oiwiki。</p>
 <p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/number-theory/pell-equation/">Pell 方程 - OI Wiki (oi-wiki.org)</a></p>
-<p>定理：记 $x^{2}-D y^{2}&#x3D;s$<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" srcset="/img/loading.gif" lazyload alt="x^2−Dy^2=s">。如果有$|s|&lt;\sqrt{D}$，则$\frac{x}{y}$ 一定是$\sqrt{D}$的渐进分数。</p>
+<p>定理：记 $x^{2}-D y^{2}&#x3D;s$。如果有$|s|&lt;\sqrt{D}$，则$\frac{x}{y}$ 一定是$\sqrt{D}$的渐进分数。</p>
 <p>证明：分情况讨论。</p>
 <p>当$s&gt;0$时，根据，$x^{2}-D y^{2}&gt;0$，有$x&gt;y\sqrt{D}$。并且有<br>$$<br>\begin{aligned}\left|\frac xy-\sqrt{D}\right|&amp;&#x3D;\frac s{y(x+y\sqrt{D})}&lt;\frac s{2y^2\sqrt{D}}&lt;\frac1{2y^2}\end{aligned}<br>$$<br>此时根据勒让德判别法，$\frac{x}{y}$是$\sqrt{D}$的渐进分数。</p>
 <p>#怎么判别的？</p>
-<p><img src="/2024-Hgame-week1-wp-crypto/%7B6C255CD5-0DAC-4c2e-A0B5-9CF027692669%7D-17088438143304.png" srcset="/img/loading.gif" lazyload alt="{6C255CD5-0DAC-4c2e-A0B5-9CF027692669}"></p>
+<p><img src="/pic/8.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>摘自《公钥密码学的数学基础》。</p>
 <p>所以直接在sagemath跑连分数即可。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br>enc=<span class="hljs-string">b&quot;\xce\xf1\x94\x84\xe9m\x88\x04\xcb\x9ad\x9e\x08b\xbf\x8b\xd3\r\xe2\x81\x17</span><br><span class="hljs-string">g\x9c\xd7\x10\x19\x1a\xa6\xc3\x9d\xde\xe7\xe0h\xed/\x00\x95tz)1\\\t8:\xb1,U\xfe</span><br><span class="hljs-string">\xdec\xf2h\xab`\xe5&#x27;\x93\xf8\xde\xb2\x9a\x9a&quot;</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">solve_pell</span>(<span class="hljs-params">N, num = <span class="hljs-number">100</span></span>):<br>c = continued_fraction(sqrt(N))<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num):<br>y = c.denominator(i)<br>x = c.numerator(i)<br><span class="hljs-keyword">if</span> x^<span class="hljs-number">2</span> - N * y^<span class="hljs-number">2</span> == <span class="hljs-number">1</span>:<br><span class="hljs-keyword">return</span> x, y<br><span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>, <span class="hljs-literal">None</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">pad</span>(<span class="hljs-params">x</span>):<br><span class="hljs-keyword">return</span> x+<span class="hljs-string">b&#x27;\x00&#x27;</span>*((<span class="hljs-number">16</span>-<span class="hljs-built_in">len</span>(x))%<span class="hljs-number">16</span>)<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">decrypt</span>(<span class="hljs-params">KEY</span>):<br>cipher= AES.new(KEY,AES.MODE_ECB)<br>flag =cipher.decrypt(enc)<br><span class="hljs-keyword">return</span> flag<br>N = <span class="hljs-number">114514</span><br>x,y=solve_pell(N)<br><span class="hljs-built_in">print</span>(x,y)<br>y=pad(long_to_bytes(y))[:<span class="hljs-number">16</span>]<br>flag=decrypt(y)<br><span class="hljs-built_in">print</span>(flag)<br></code></pre></td></tr></table></figure>
@@ -318,6 +324,11 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> time<br><br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image, ImageDraw, ImageFont<br><span class="hljs-keyword">import</span> threading<br><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> secrets<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">xor_images</span>(<span class="hljs-params">image1, image2</span>):<span class="hljs-comment">#图片异或？</span><br>    <span class="hljs-keyword">if</span> image1.size != image2.size:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;Images must have the same dimensions.&quot;</span>)<br>    xor_image = Image.new(<span class="hljs-string">&quot;RGB&quot;</span>, image1.size)<br>    pixels1 = image1.load()<br>    pixels2 = image2.load()<br>    xor_pixels = xor_image.load()<br>    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(image1.size[<span class="hljs-number">0</span>]):<br>        <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(image1.size[<span class="hljs-number">1</span>]):<br>            r1, g1, b1 = pixels1[x, y]<br>            r2, g2, b2 = pixels2[x, y]<br>            xor_pixels[x, y] = (r1 ^ r2, g1 ^ g2, b1 ^ b2)<br>    <span class="hljs-keyword">return</span> xor_image<br><span class="hljs-built_in">list</span> = []<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;1.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;2.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;3.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;4.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;5.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;6.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;7.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;8.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;9.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;10.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;11.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;12.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;13.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;14.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;15.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;16.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;17.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;18.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;19.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;20.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;21.png&#x27;</span>))<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">21</span>):<br>    xor_images(<span class="hljs-built_in">list</span>[<span class="hljs-number">0</span>],<span class="hljs-built_in">list</span>[i]).save(<span class="hljs-string">&quot;1+&quot;</span>+<span class="hljs-built_in">str</span>(i+<span class="hljs-number">1</span>)+<span class="hljs-string">&quot;.png&quot;</span>)<br></code></pre></td></tr></table></figure>
 
 <p>这段代码就是一张图片和其他所有图片异或。</p>
+<p>大概效果</p>
+<p><img src="/pic/9.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>然后找出顺序，前后彼此异或，就能看到flag了，可能是反的，应该看的出来吧（</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image, ImageDraw, ImageFont<br><span class="hljs-keyword">import</span> threading<br><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> secrets<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">xor_images</span>(<span class="hljs-params">image1, image2</span>):<span class="hljs-comment">#图片异或？</span><br>    <span class="hljs-keyword">if</span> image1.size != image2.size:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;Images must have the same dimensions.&quot;</span>)<br>    xor_image = Image.new(<span class="hljs-string">&quot;RGB&quot;</span>, image1.size)<br>    pixels1 = image1.load()<br>    pixels2 = image2.load()<br>    xor_pixels = xor_image.load()<br>    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(image1.size[<span class="hljs-number">0</span>]):<br>        <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(image1.size[<span class="hljs-number">1</span>]):<br>            r1, g1, b1 = pixels1[x, y]<br>            r2, g2, b2 = pixels2[x, y]<br>            xor_pixels[x, y] = (r1 ^ r2, g1 ^ g2, b1 ^ b2)<br>    <span class="hljs-keyword">return</span> xor_image<br><span class="hljs-built_in">list</span> = []<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;1.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;2.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;3.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;4.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;5.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;6.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;7.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;8.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;9.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;10.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;11.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;12.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;13.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;14.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;15.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;16.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;17.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;18.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;19.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;20.png&#x27;</span>))<br><span class="hljs-built_in">list</span>.append(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;21.png&#x27;</span>))<br>numlist = [<span class="hljs-number">14</span>,<span class="hljs-number">11</span>,<span class="hljs-number">1</span>,<span class="hljs-number">6</span>,<span class="hljs-number">3</span>,<span class="hljs-number">8</span>,<span class="hljs-number">17</span>,<span class="hljs-number">5</span>,<span class="hljs-number">18</span>,<span class="hljs-number">10</span>,<span class="hljs-number">2</span>,<span class="hljs-number">16</span>,<span class="hljs-number">13</span>,<span class="hljs-number">19</span>,<span class="hljs-number">12</span>,<span class="hljs-number">9</span>,<span class="hljs-number">21</span>,<span class="hljs-number">15</span>,<span class="hljs-number">20</span>,<span class="hljs-number">7</span>,<span class="hljs-number">4</span>]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">20</span>):<br>    xor_images(<span class="hljs-built_in">list</span>[numlist[i]-<span class="hljs-number">1</span>],<span class="hljs-built_in">list</span>[numlist[i+<span class="hljs-number">1</span>]-<span class="hljs-number">1</span>]).save(<span class="hljs-built_in">str</span>(numlist[i])+<span class="hljs-string">&quot;+&quot;</span>+<span class="hljs-built_in">str</span>(numlist[i+<span class="hljs-number">1</span>])+<span class="hljs-string">&quot;.png&quot;</span>)<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -327,6 +338,21 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CTF/" class="print-no-link">#CTF</a>
+      
+        <a href="/tags/Crypto/" class="print-no-link">#Crypto</a>
+      
+        <a href="/tags/Web/" class="print-no-link">#Web</a>
+      
+        <a href="/tags/Misc/" class="print-no-link">#Misc</a>
+      
+        <a href="/tags/Hgame/" class="print-no-link">#Hgame</a>
+      
+    </div>
+  
 </div>
 
 
@@ -335,7 +361,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>2024-Hgame-week1-wp-crypto</div>
       <div>https://py-thok.github.io/2024/02/25/2024-Hgame-week1-wp-crypto/</div>
     </div>
     <div class="license-meta">
@@ -475,6 +501,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -692,6 +724,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
