@@ -24,7 +24,7 @@
 <meta property="og:description" content="欢迎来到我的博客，本博客采用hexo框架和fluid主题。 是一名ctf苦逼密码手…. PYthok是本人的另一个马甲，大多账号均为此名。 努力学习….努力创作….欢迎关注。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-09T11:13:55.000Z">
-<meta property="article:modified_time" content="2024-02-24T15:31:55.796Z">
+<meta property="article:modified_time" content="2024-02-25T05:53:13.427Z">
 <meta property="article:author" content="破易Poi">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -286,6 +286,40 @@
 
   </div>
 
+  
+    <!-- Comments -->
+    <article id="comments" lazyload>
+      
+      
+        
+      
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://silver-crumble-1edb9d.netlify.app/.netlify/functions/twikoo","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
   
 </article>
 
