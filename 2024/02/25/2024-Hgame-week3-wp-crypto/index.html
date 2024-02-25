@@ -24,7 +24,7 @@
 <meta property="og:description" content="2024-Hgame-week3-wp-crypto没事干，所以再更一篇吧 非常坏格密码，使我sagemath旋转 exRSA扩展维纳攻击，其实之前做到维纳攻击的时候有了解过但不深，今天也算是正式了解了。 123456789101112131415161718192021222324from Crypto.Util.number import *from secret import flagm&#x3D;b">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-25T12:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-25T14:19:34.439Z">
+<meta property="article:modified_time" content="2024-02-25T14:23:45.670Z">
 <meta property="article:author" content="破易Poi">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Crypto">
@@ -294,7 +294,7 @@
 
 <p>每个enc泄露32位，总共32个enc，要求的m大概在600位左右，是可以求的。</p>
 <p>注意到enc泄露的是低位，所以这么构造<br>$$<br>T_im\equiv D*ENC_i+res_i\quad\text{(mod}p)<br>$$<br>其中$m$是密文，$D&#x3D;2^{32}+1$ ，$ENC_i$是未知高位。</p>
-<p>然后继续构造<br>$$<br>m\equiv T_0^{-1}(D*ENC_0+res_0)\quad\mathrm{<del>(mod</del>}p)<br>$$<br>两个式子联立消m 然后把$ENC_i$提出来<br>$$<br>(DT_0)^{-1}(T_ires_0-T_0res_i)+(T_0^{-1}T_i)ENC_0\equiv ENC_i\quad\text{(mod}p)<br>$$<br>这样子在这个式子中$ENC_0$和$ENC_i$都暴露出来了，换元然后构造矩阵直接格基约化。</p>
+<p>然后继续构造<br>$$<br>m\equiv T_0^{-1}(D*ENC_0+res_0)\quad\mathrm{(mod}p)<br>$$<br>两个式子联立消m 然后把$ENC_i$提出来<br>$$<br>(DT_0)^{-1}(T_ires_0-T_0res_i)+(T_0^{-1}T_i)ENC_0\equiv ENC_i\quad\text{(mod}p)<br>$$<br>这样子在这个式子中$ENC_0$和$ENC_i$都暴露出来了，换元然后构造矩阵直接格基约化。</p>
 <p>令$D_{i}\equiv(DT_{0})^{-1}(T_{i}res_{0}-T_{0}res_{i})(\mathrm{mod}p),E_{i}\equiv(T_{0}^{-1}T_{i})(\mathrm{mod}p).$</p>
 <p>展开。<br>$$<br>D_i+E_i*ENC_0-k_ip&#x3D;ENC_i<br>$$<br>我草这个元设的真丑吧</p>
 <p>但是我懒得改了</p>
