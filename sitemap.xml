@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://py-thok.github.io/2024/02/24/%E6%9C%80%E8%BF%91/</loc>
+    <loc>https://py-thok.github.io/2024/02/25/2024-Hgame-week2-wp-crypto/</loc>
     
     <lastmod>2024-02-25</lastmod>
     
@@ -12,6 +12,15 @@
   
   <url>
     <loc>https://py-thok.github.io/2024/02/25/2024-Hgame-week1-wp-crypto/</loc>
+    
+    <lastmod>2024-02-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://py-thok.github.io/2024/02/24/%E6%9C%80%E8%BF%91/</loc>
     
     <lastmod>2024-02-25</lastmod>
     
