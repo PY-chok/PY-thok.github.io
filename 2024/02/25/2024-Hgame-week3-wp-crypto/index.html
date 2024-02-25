@@ -1,0 +1,772 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#11d4b7">
+  <meta name="author" content="破易Poi">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="2024-Hgame-week3-wp-crypto没事干，所以再更一篇吧 非常坏格密码，使我sagemath旋转 exRSA扩展维纳攻击，其实之前做到维纳攻击的时候有了解过但不深，今天也算是正式了解了。 123456789101112131415161718192021222324from Crypto.Util.number import *from secret import flagm&#x3D;b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-Hgame-week3-wp-crypto">
+<meta property="og:url" content="https://py-thok.github.io/2024/02/25/2024-Hgame-week3-wp-crypto/index.html">
+<meta property="og:site_name" content="Poi!">
+<meta property="og:description" content="2024-Hgame-week3-wp-crypto没事干，所以再更一篇吧 非常坏格密码，使我sagemath旋转 exRSA扩展维纳攻击，其实之前做到维纳攻击的时候有了解过但不深，今天也算是正式了解了。 123456789101112131415161718192021222324from Crypto.Util.number import *from secret import flagm&#x3D;b">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-25T12:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-25T13:59:22.595Z">
+<meta property="article:author" content="破易Poi">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Crypto">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Misc">
+<meta property="article:tag" content="Hgame">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>2024-Hgame-week3-wp-crypto - Poi!</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"py-thok.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>POI!</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2024-Hgame-week3-wp-crypto"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-02-25 20:00" pubdate>
+          2024年2月25日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          22k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          182 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2024-Hgame-week3-wp-crypto</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="2024-Hgame-week3-wp-crypto"><a href="#2024-Hgame-week3-wp-crypto" class="headerlink" title="2024-Hgame-week3-wp-crypto"></a>2024-Hgame-week3-wp-crypto</h1><p>没事干，所以再更一篇吧</p>
+<p>非常坏格密码，使我sagemath旋转</p>
+<h3 id="exRSA"><a href="#exRSA" class="headerlink" title="exRSA"></a>exRSA</h3><p>扩展维纳攻击，其实之前做到维纳攻击的时候有了解过但不深，今天也算是正式了解了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> secret <span class="hljs-keyword">import</span> flag<br>m=bytes_to_long(flag)<br>p=getStrongPrime(<span class="hljs-number">1024</span>)<br>q=getStrongPrime(<span class="hljs-number">1024</span>)<br>phi=(p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>)<br>e1=inverse(getPrime(<span class="hljs-number">768</span>),phi)<br>e2=inverse(getPrime(<span class="hljs-number">768</span>),phi)<br>e3=inverse(getPrime(<span class="hljs-number">768</span>),phi)<br>n=p*q<br>c=<span class="hljs-built_in">pow</span>(m,<span class="hljs-number">0x10001</span>,n)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;e1=<span class="hljs-subst">&#123;e1&#125;</span>&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;e2=<span class="hljs-subst">&#123;e2&#125;</span>&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;e3=<span class="hljs-subst">&#123;e3&#125;</span>&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;c=<span class="hljs-subst">&#123;c&#125;</span>&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;n=<span class="hljs-subst">&#123;n&#125;</span>&#x27;</span>)<br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">e1=5077048237811969427473111225370876122528967447056551899123613461792688002896788394304192917610564149766252232281576990293485239684145310876930997918960070816968829150376875953405420809586267153171717496198336861089523701832098322284501931142889817575816761705044951705530849327928849848158643030693363143757063220584714925893965587967042137557807261154117916358519477964645293471975063362050690306353627492980861008439765365837622657977958069853288056307253167509883258122949882277021665317807253308906355670472172346171177267688064959397186926103987259551586627965406979118193485527520976748490728460167949055289539</span><br><span class="hljs-string">e2=12526848298349005390520276923929132463459152574998625757208259297891115133654117648215782945332529081365273860316201130793306570777735076534772168999705895641207535303839455074003057687810381110978320988976011326106919940799160974228311824760046370273505511065619268557697182586259234379239410482784449815732335294395676302226416863709340032987612715151916084291821095462625821023133560415325824885347221391496937213246361736361270846741128557595603052713612528453709948403100711277679641218520429878897565655482086410576379971404789212297697553748292438183065500993375040031733825496692797699362421010271599510269401</span><br><span class="hljs-string">e3=12985940757578530810519370332063658344046688856605967474941014436872720360444040464644790980976991393970947023398357422203873284294843401144065013911463670501559888601145108651961098348250824166697665528417668374408814572959722789020110396245076275553505878565603509466220710219260037783849276475397283421068716088638186994778153542817681963059581651103563578804145156157584336712678882995685632615686853980176047683326974283896343322981521150211317597571554542488921290158122634140571148036732893808064119048328855134054709120877895941670166421664806186710346824494054783025733475898081247824887967550418509038276279</span><br><span class="hljs-string">c=1414176060152301842110497098024597189246259172019335414900127452098233943041825926028517437075316294943355323947458928010556912909139739282924255506647305696872907898950473108556417350199783145349691087255926287363286922011841143339530863300198239231490707393383076174791818994158815857391930802936280447588808440607415377391336604533440099793849237857247557582307391329320515996021820000355560514217505643587026994918588311127143566858036653315985177551963836429728515745646807123637193259859856630452155138986610272067480257330592146135108190083578873094133114440050860844192259441093236787002715737932342847147399</span><br><span class="hljs-string">n=17853303733838066173110417890593704464146824886316456780873352559969742615755294466664439529352718434399552818635352768033531948009737170697566286848710832800426311328560924133698481653594007727877031506265706341560810588064209681809146597572126173303463125668183837840427667101827234752823747483792944536893070188010357644478512143332014786539698535220139784440314481371464053954769822738407808161946943216714729685820896972467020893493349051243983390018762076812868678098172416465691550285372846402991995794349015838868221686216396597327273110165922789814315858462049706255254066724012925815100434953821856854529753</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://ctf-wiki.org/crypto/asymmetric/rsa/d_attacks/rsa_extending_wiener/">扩展维纳攻击 - CTF Wiki (ctf-wiki.org)</a></p>
+<p>ctfwiki写的实在很详尽，在此仅贴出构造矩阵和代码。<br>$$<br>L_3&#x3D;\begin{pmatrix}1&amp;-N&amp;0&amp;N^2&amp;0&amp;0&amp;0&amp;-N^3\0&amp;e_1&amp;-e_1&amp;-Ne_1&amp;-e_1&amp;0&amp;Ne_1&amp;N^2e_1\0&amp;0&amp;e_2&amp;-Ne_2&amp;0&amp;Ne_2&amp;0&amp;N^2e_2\0&amp;0&amp;0&amp;e_1e_2&amp;0&amp;-e_1e_2&amp;-Ne_1e_2\0&amp;0&amp;0&amp;0&amp;e_3&amp;-Ne_3&amp;-Ne_3&amp;N^2e_3\0&amp;0&amp;0&amp;0&amp;0&amp;e_1e_3&amp;0&amp;-Ne_1e_3\0&amp;0&amp;0&amp;0&amp;0&amp;0&amp;e_2e_3&amp;-Ne_2e_3\0&amp;0&amp;0&amp;0&amp;0&amp;0&amp;0&amp;e_1e_2e_3\end{pmatrix}<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> gmpy2 <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> sage.<span class="hljs-built_in">all</span> <span class="hljs-keyword">import</span> *<br>e1=<span class="hljs-number">5077048237811969427473111225370876122528967447056551899123613461792688002896788394304192917610564149766252232281576990293485239684145310876930997918960070816968829150376875953405420809586267153171717496198336861089523701832098322284501931142889817575816761705044951705530849327928849848158643030693363143757063220584714925893965587967042137557807261154117916358519477964645293471975063362050690306353627492980861008439765365837622657977958069853288056307253167509883258122949882277021665317807253308906355670472172346171177267688064959397186926103987259551586627965406979118193485527520976748490728460167949055289539</span><br>e2=<span class="hljs-number">12526848298349005390520276923929132463459152574998625757208259297891115133654117648215782945332529081365273860316201130793306570777735076534772168999705895641207535303839455074003057687810381110978320988976011326106919940799160974228311824760046370273505511065619268557697182586259234379239410482784449815732335294395676302226416863709340032987612715151916084291821095462625821023133560415325824885347221391496937213246361736361270846741128557595603052713612528453709948403100711277679641218520429878897565655482086410576379971404789212297697553748292438183065500993375040031733825496692797699362421010271599510269401</span><br>e3=<span class="hljs-number">12985940757578530810519370332063658344046688856605967474941014436872720360444040464644790980976991393970947023398357422203873284294843401144065013911463670501559888601145108651961098348250824166697665528417668374408814572959722789020110396245076275553505878565603509466220710219260037783849276475397283421068716088638186994778153542817681963059581651103563578804145156157584336712678882995685632615686853980176047683326974283896343322981521150211317597571554542488921290158122634140571148036732893808064119048328855134054709120877895941670166421664806186710346824494054783025733475898081247824887967550418509038276279</span><br>c=<span class="hljs-number">1414176060152301842110497098024597189246259172019335414900127452098233943041825926028517437075316294943355323947458928010556912909139739282924255506647305696872907898950473108556417350199783145349691087255926287363286922011841143339530863300198239231490707393383076174791818994158815857391930802936280447588808440607415377391336604533440099793849237857247557582307391329320515996021820000355560514217505643587026994918588311127143566858036653315985177551963836429728515745646807123637193259859856630452155138986610272067480257330592146135108190083578873094133114440050860844192259441093236787002715737932342847147399</span><br>N=<span class="hljs-number">17853303733838066173110417890593704464146824886316456780873352559969742615755294466664439529352718434399552818635352768033531948009737170697566286848710832800426311328560924133698481653594007727877031506265706341560810588064209681809146597572126173303463125668183837840427667101827234752823747483792944536893070188010357644478512143332014786539698535220139784440314481371464053954769822738407808161946943216714729685820896972467020893493349051243983390018762076812868678098172416465691550285372846402991995794349015838868221686216396597327273110165922789814315858462049706255254066724012925815100434953821856854529753</span><br><br>a  = <span class="hljs-number">0.374</span><span class="hljs-comment">#731./2049</span><br>M1=N**<span class="hljs-number">0.5</span><br>M2= N **(a+<span class="hljs-number">1</span>)<br>D = diagonal_matrix(ZZ,[N**(<span class="hljs-number">1.5</span>),N,N**(a+<span class="hljs-number">1.5</span>),N**(<span class="hljs-number">0.5</span>),N**(a+<span class="hljs-number">1.5</span>),N **(a+<span class="hljs-number">1</span>),N **(a+<span class="hljs-number">1</span>),<span class="hljs-number">1</span>])<br>M=matrix(ZZ,[[<span class="hljs-number">1</span>,-N, <span class="hljs-number">0</span> ,N**<span class="hljs-number">2</span> , <span class="hljs-number">0</span> ,<span class="hljs-number">0</span>,  <span class="hljs-number">0</span> ,  -N**<span class="hljs-number">3</span>],<br>             [<span class="hljs-number">0</span>,e1,-e1,-e1*N,-e1,<span class="hljs-number">0</span>,N*e1,N**<span class="hljs-number">2</span>*e1],<br>             [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,e2,-e2*N,<span class="hljs-number">0</span>,e2*N,<span class="hljs-number">0</span>,N**<span class="hljs-number">2</span>*e2],<br>             [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,e1*e2,<span class="hljs-number">0</span>,-e1*e2,-e1*e2,-N*e1*e2],<br>             [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,e3,-N*e3,-N*e3,N**<span class="hljs-number">2</span>*e3],<br>             [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,e1*e3,<span class="hljs-number">0</span>,-N*e1*e3],<br>             [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,e2*e3,-N*e2*e3],<br>             [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,e1*e2*e3],])*D<br>L=M.LLL()<br>t=vector(ZZ,L[<span class="hljs-number">0</span>])<br>x=t*M**(-<span class="hljs-number">1</span>)<br>phi = <span class="hljs-built_in">int</span>(x[<span class="hljs-number">1</span>]/x[<span class="hljs-number">0</span>]*e1)<br>d = inverse(<span class="hljs-number">65537</span>,phi)<br><span class="hljs-built_in">print</span>(long_to_bytes(<span class="hljs-built_in">int</span>(<span class="hljs-built_in">pow</span>(c,d,N))))<br></code></pre></td></tr></table></figure>
+
+<p>据说某些情况LLL跑不出来？并没有深究</p>
+<h3 id="HNP"><a href="#HNP" class="headerlink" title="HNP"></a>HNP</h3><p>题如其名。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> secret <span class="hljs-keyword">import</span> flag<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">encrypt</span>(<span class="hljs-params">m,p,t</span>):<br>    <span class="hljs-keyword">return</span> [(ti*m)%p <span class="hljs-keyword">for</span> ti <span class="hljs-keyword">in</span> t]<br><br>m=bytes_to_long(flag[:<span class="hljs-number">63</span>])<br>length=m.bit_length()+<span class="hljs-number">8</span><br>p=getStrongPrime(length)<br>n=<span class="hljs-number">32</span><br>t=[getRandomRange(<span class="hljs-number">0</span>,p) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n)]<br>enc=encrypt(m,p,t)<br>res=[i%(<span class="hljs-number">2</span>**n+<span class="hljs-number">1</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> enc]<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;p=<span class="hljs-subst">&#123;p&#125;</span>&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;t=<span class="hljs-subst">&#123;t&#125;</span>&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;res=<span class="hljs-subst">&#123;res&#125;</span>&#x27;</span>)<br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">p=11306299241774950053269547103284637414407835125777245204069367567691021928864773207548731051592853515206232365901169778048084146520829032339328263913558053</span><br><span class="hljs-string">t=[3322008555255129336821309701482996933045379792432532251579564581211072677403244970423357912298444457457306659801200188166569132560659008356952740599371688, 8276764260264858811845211578415023343942634613522088631021199433066924291049858607045960690574035761370394263154981351728494309737901121703288822616367266, 9872291736922974456420418463601129094227231979218385985149661132792467621940722580745327835405374826293791332815176458750548942757024017382881517284991646, 4021521745142535813153669961146457406640791935844796005344073886289668464885011415887755787903927824762833158130615018326666118383128627535623639046817799, 24569151076141700493541155834378165089870615699969211988778938492838766214386066952596557490584021813819164202001474086538804476667616708172536787956586, 3218501156520848572861458831123822689702035242514803505049101779996231750875036344564322600086861361414609201214822262908428091097382781770850929067404210, 3563405987398375076327633444036492163004958714828685846202818610320439306396912425420391070117069875583786819323173342951172594046652017297552813501557159, 4914709045693863038598225124534515048993310770286105070725513667435983789847547225180024824321458761262390817487861675595466513538901373422149236133926354, 10800566112999947911006702454427389510409658644419749067440812458744391509925306994806187389406032718319773665587324010542068486131582672363925769248595266, 623364920052209790798128731089194813138909691039137935275037339503622126325928773037501254722851684318024014108149525215083265733712809162344553998427324, 4918421097628430613801265525870561041230011029818851291086862970508621529074497601678774921285912745589840510459677522074887576152015356984592589649844431, 7445733357215847370070696136653689748718028080364812263947785747353258936968978183471549706166364243148972154215055224857918834937707555053246184822095602, 9333534755049225627530284249388438694002602645047933865453159836796667198966058177988500184073454386184080934727537200575457598976121667373801441395932440, 5010854803179970445838791575321127911278311635230076639023411571148488903400610121248617307773872612743228998892986200202713496570375447255258630932158822, 6000645068462569819648461070140557521144801013490106632356836325002546400871463957228581143954591005398533252218429970486115490535584071786260818773166324, 8007260909124669381862034901556111245780505987082990804380814797200322228942432673939944693062470178256867366602331612363176408356304641672459456517978560, 10179739175373883376929532026389135792129233730601278687507041429438945598523995700184622359660605910932803141785598758326254886448481046307666042835829725, 8390072767717395701926289779433055672863880336031837009119103448675232362942223633129328309118158273835961567436591234922783953373319767835877266849545292, 7875011911562967874676113680693929230283866841475641162854665293111344467709424408623198370942797099964625447512797138192853009126888853283526034411007513, 5293772811020012501020124775214770193234655210319343058648675411115210453680753070042821835082619634341500680892323002118953557746116918093661769464642068, 2613797279426774540306461931319193657999892129844832159658771717387120246795689678231275371499556522396061591882431426310841974713419974045883021613987705, 9658126012133217804126630005236073513485215390812977974660029053522665282550965040288256074945246850744694519543358777252929661561636241161575937061521711, 2982535220844977621775139406357528876019349385634811795480230677982345697183586203669094998039995683973939721644887543907494963824968042199353945120367505, 107289984878191849357180490850397539311037762262082755398160292401340078782643246498566039415279868796667596686125847400130898160017838981308638814854641, 120993130590874228473811314869823704699012435303134640953201808807618070048912918046616664677916248813062043597607873728870402493717351447905456920806865, 2253040652771796284266254261719805768102740653097446325869783812201171144150768875885963729324915714812719138247784194752636928267712344736198611708630089, 8650007272154283057350664311505887535841268767424545016901418989555620869091145651216448723200240914143882774616678968725523914310965356875681207295242434, 9628747829107584650014156079928108801687158029086221730883999749044532846489666115473993005442192859171931882795973774131309900021287319059216105939670757, 10846936951522093706092027908131679912432689712451920718439096706435533926996215766191967052667966065917006691565771695772798711202812180782901250249613072, 1606865651227988736664127021678689299989045439998336603562232908863405778474520915170766771811336319655792746590981740617823564813573118410064976081989237, 6239063657591721097735049409610872941214078699330136826592958549212481802973973104374548555184907929255031570525343007518434357690480429981016781110249612, 1855365916387114620581029939707053701062476745235578683558063796604744448050278138954359506922875967537567359575662394297579958372107484276360920567730458]</span><br><span class="hljs-string">res=[2150646508, 1512876052, 2420557546, 2504482055, 892924885, 213721693, 2708081441, 1242578136, 717552493, 3210536920, 2868728798, 1873446451, 645647556, 2863150833, 2481560171, 2518043272, 3183116112, 3032464437, 934713925, 470165267, 1104983992, 194502564, 1621769687, 3844589346, 21450588, 2520267465, 2516176644, 3290591307, 3605562914, 140915309, 3690380156, 3646976628]</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>每个enc泄露32位，总共32个enc，要求的m大概在600位左右，是可以求的。</p>
+<p>注意到enc泄露的是低位，所以这么构造<br>$$<br>T_im\equiv D*ENC_i+res_i\quad\text{(mod}p)<br>$$<br>其中$m$是密文，$D&#x3D;2^{32}+1$ ，$ENC_i$是未知高位。</p>
+<p>然后继续构造<br>$$<br>m\equiv T_0^{-1}(D*ENC_0+res_0)\quad\mathrm{<del>(mod</del>}p)<br>$$<br>两个式子联立消m 然后把$ENC_i$提出来<br>$$<br>(DT_0)^{-1}(T_ires_0-T_0res_i)+(T_0^{-1}T_i)ENC_0\equiv ENC_i\quad\text{(mod}p)<br>$$<br>这样子在这个式子中$ENC_0$和$ENC_i$都暴露出来了，换元然后构造矩阵直接格基约化。</p>
+<p>令$D_{i}\equiv(DT_{0})^{-1}(T_{i}res_{0}-T_{0}res_{i})(\mathrm{mod}p),E_{i}\equiv(T_{0}^{-1}T_{i})(\mathrm{mod}p).$</p>
+<p>展开。<br>$$<br>D_i+E_i*ENC_0-k_ip&#x3D;ENC_i<br>$$<br>我草这个元设的真丑吧</p>
+<p>但是我懒得改了</p>
+<p>令$R&#x3D;2^{m-s}$，构造矩阵<br>$$<br>B&#x3D;\begin{bmatrix}-p &amp;  &amp;  &amp;  &amp;  &amp;  &amp;  &amp; \  &amp; -p &amp;  &amp;  &amp;  &amp;  &amp;  &amp; \  &amp;  &amp; \ddots &amp;  &amp;  &amp;  &amp;  &amp; \  &amp;  &amp;  &amp; -p &amp;  &amp;  &amp;  &amp; \ E_1 &amp; E_2 &amp; E_{n-1} &amp;  &amp; 1 &amp;  &amp;  &amp; \ D_1 &amp; D_2 &amp; D_{n-1} &amp;  &amp;  &amp; R &amp;  &amp; \end{bmatrix}_{(n+1)*(n+1)}<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> sage.<span class="hljs-built_in">all</span> <span class="hljs-keyword">import</span> *<br><br>m = <span class="hljs-number">512</span><br>s = <span class="hljs-number">32</span><br>n = <span class="hljs-number">32</span><br>q=<span class="hljs-number">11306299241774950053269547103284637414407835125777245204069367567691021928864773207548731051592853515206232365901169778048084146520829032339328263913558053</span><br>A=[<span class="hljs-number">3322008555255129336821309701482996933045379792432532251579564581211072677403244970423357912298444457457306659801200188166569132560659008356952740599371688</span>, <span class="hljs-number">8276764260264858811845211578415023343942634613522088631021199433066924291049858607045960690574035761370394263154981351728494309737901121703288822616367266</span>, <span class="hljs-number">9872291736922974456420418463601129094227231979218385985149661132792467621940722580745327835405374826293791332815176458750548942757024017382881517284991646</span>, <span class="hljs-number">4021521745142535813153669961146457406640791935844796005344073886289668464885011415887755787903927824762833158130615018326666118383128627535623639046817799</span>, <span class="hljs-number">24569151076141700493541155834378165089870615699969211988778938492838766214386066952596557490584021813819164202001474086538804476667616708172536787956586</span>, <span class="hljs-number">3218501156520848572861458831123822689702035242514803505049101779996231750875036344564322600086861361414609201214822262908428091097382781770850929067404210</span>, <span class="hljs-number">3563405987398375076327633444036492163004958714828685846202818610320439306396912425420391070117069875583786819323173342951172594046652017297552813501557159</span>, <span class="hljs-number">4914709045693863038598225124534515048993310770286105070725513667435983789847547225180024824321458761262390817487861675595466513538901373422149236133926354</span>, <span class="hljs-number">10800566112999947911006702454427389510409658644419749067440812458744391509925306994806187389406032718319773665587324010542068486131582672363925769248595266</span>, <span class="hljs-number">623364920052209790798128731089194813138909691039137935275037339503622126325928773037501254722851684318024014108149525215083265733712809162344553998427324</span>, <span class="hljs-number">4918421097628430613801265525870561041230011029818851291086862970508621529074497601678774921285912745589840510459677522074887576152015356984592589649844431</span>, <span class="hljs-number">7445733357215847370070696136653689748718028080364812263947785747353258936968978183471549706166364243148972154215055224857918834937707555053246184822095602</span>, <span class="hljs-number">9333534755049225627530284249388438694002602645047933865453159836796667198966058177988500184073454386184080934727537200575457598976121667373801441395932440</span>, <span class="hljs-number">5010854803179970445838791575321127911278311635230076639023411571148488903400610121248617307773872612743228998892986200202713496570375447255258630932158822</span>, <span class="hljs-number">6000645068462569819648461070140557521144801013490106632356836325002546400871463957228581143954591005398533252218429970486115490535584071786260818773166324</span>, <span class="hljs-number">8007260909124669381862034901556111245780505987082990804380814797200322228942432673939944693062470178256867366602331612363176408356304641672459456517978560</span>, <span class="hljs-number">10179739175373883376929532026389135792129233730601278687507041429438945598523995700184622359660605910932803141785598758326254886448481046307666042835829725</span>, <span class="hljs-number">8390072767717395701926289779433055672863880336031837009119103448675232362942223633129328309118158273835961567436591234922783953373319767835877266849545292</span>, <span class="hljs-number">7875011911562967874676113680693929230283866841475641162854665293111344467709424408623198370942797099964625447512797138192853009126888853283526034411007513</span>, <span class="hljs-number">5293772811020012501020124775214770193234655210319343058648675411115210453680753070042821835082619634341500680892323002118953557746116918093661769464642068</span>, <span class="hljs-number">2613797279426774540306461931319193657999892129844832159658771717387120246795689678231275371499556522396061591882431426310841974713419974045883021613987705</span>, <span class="hljs-number">9658126012133217804126630005236073513485215390812977974660029053522665282550965040288256074945246850744694519543358777252929661561636241161575937061521711</span>, <span class="hljs-number">2982535220844977621775139406357528876019349385634811795480230677982345697183586203669094998039995683973939721644887543907494963824968042199353945120367505</span>, <span class="hljs-number">107289984878191849357180490850397539311037762262082755398160292401340078782643246498566039415279868796667596686125847400130898160017838981308638814854641</span>, <span class="hljs-number">120993130590874228473811314869823704699012435303134640953201808807618070048912918046616664677916248813062043597607873728870402493717351447905456920806865</span>, <span class="hljs-number">2253040652771796284266254261719805768102740653097446325869783812201171144150768875885963729324915714812719138247784194752636928267712344736198611708630089</span>, <span class="hljs-number">8650007272154283057350664311505887535841268767424545016901418989555620869091145651216448723200240914143882774616678968725523914310965356875681207295242434</span>, <span class="hljs-number">9628747829107584650014156079928108801687158029086221730883999749044532846489666115473993005442192859171931882795973774131309900021287319059216105939670757</span>, <span class="hljs-number">10846936951522093706092027908131679912432689712451920718439096706435533926996215766191967052667966065917006691565771695772798711202812180782901250249613072</span>, <span class="hljs-number">1606865651227988736664127021678689299989045439998336603562232908863405778474520915170766771811336319655792746590981740617823564813573118410064976081989237</span>, <span class="hljs-number">6239063657591721097735049409610872941214078699330136826592958549212481802973973104374548555184907929255031570525343007518434357690480429981016781110249612</span>, <span class="hljs-number">1855365916387114620581029939707053701062476745235578683558063796604744448050278138954359506922875967537567359575662394297579958372107484276360920567730458</span>]<br>b=[<span class="hljs-number">2150646508</span>, <span class="hljs-number">1512876052</span>, <span class="hljs-number">2420557546</span>, <span class="hljs-number">2504482055</span>, <span class="hljs-number">892924885</span>, <span class="hljs-number">213721693</span>, <span class="hljs-number">2708081441</span>, <span class="hljs-number">1242578136</span>, <span class="hljs-number">717552493</span>, <span class="hljs-number">3210536920</span>, <span class="hljs-number">2868728798</span>, <span class="hljs-number">1873446451</span>, <span class="hljs-number">645647556</span>, <span class="hljs-number">2863150833</span>, <span class="hljs-number">2481560171</span>, <span class="hljs-number">2518043272</span>, <span class="hljs-number">3183116112</span>, <span class="hljs-number">3032464437</span>, <span class="hljs-number">934713925</span>, <span class="hljs-number">470165267</span>, <span class="hljs-number">1104983992</span>, <span class="hljs-number">194502564</span>, <span class="hljs-number">1621769687</span>, <span class="hljs-number">3844589346</span>, <span class="hljs-number">21450588</span>, <span class="hljs-number">2520267465</span>, <span class="hljs-number">2516176644</span>, <span class="hljs-number">3290591307</span>, <span class="hljs-number">3605562914</span>, <span class="hljs-number">140915309</span>, <span class="hljs-number">3690380156</span>, <span class="hljs-number">3646976628</span>]<br>T = <span class="hljs-number">2</span>^s+<span class="hljs-number">1</span><br>Ti = T.inverse_mod(q)<br><span class="hljs-keyword">for</span> choice <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):<br>    A0 = A[choice]<br>    S = <span class="hljs-number">2</span>^(m-<span class="hljs-number">1</span>)<br>    b0 = b[choice]<br>    b = [x  <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> b]<br>    A0i = inverse(A[choice],q)<br>    Mt = matrix(ZZ, n+<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n-<span class="hljs-number">1</span>):<br>        Mt[i, i]  = -q<br>        Mt[-<span class="hljs-number">2</span>, i] = A0i*A[i+<span class="hljs-number">1</span>] % q<br>        Mt[-<span class="hljs-number">1</span>, i] = A0i*Ti*(A[i+<span class="hljs-number">1</span>]*b0 - A0*b[i+<span class="hljs-number">1</span>]) % q<br>    Mt[-<span class="hljs-number">2</span>, -<span class="hljs-number">2</span>] = <span class="hljs-number">1</span><br>    R = <span class="hljs-number">2</span>^(m-<span class="hljs-number">19</span>)<br>    Mt[-<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>] = R<br>    L = Mt.BKZ(block_size=Mt.rank())<br>    <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> L:<br>        <span class="hljs-keyword">if</span> l[-<span class="hljs-number">1</span>] == R:<br>            B0 = l[-<span class="hljs-number">2</span>]<br>            x0 = (T*B0+b0) * A0i % q<br>            <span class="hljs-built_in">print</span>(long_to_bytes(<span class="hljs-built_in">int</span>(x0)))<br></code></pre></td></tr></table></figure>
+
+<h3 id="matrix-equation"><a href="#matrix-equation" class="headerlink" title="matrix_equation"></a><strong>matrix_equation</strong></h3><p>简单的格构造，其实本该想到的，但是笔者一意孤行认为是丢番图方程…</p>
+<p>卡了一会，当然最后还是做出来了。</p>
+<p>简单说说。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">import</span> hashlib<br><span class="hljs-keyword">from</span> secret <span class="hljs-keyword">import</span> p,q,r<br>k1=getPrime(<span class="hljs-number">256</span>)<br>k2=getPrime(<span class="hljs-number">256</span>)<br>temp=p*<span class="hljs-number">2</span>**<span class="hljs-number">256</span>+q*k1+r*k2<br>hint=<span class="hljs-built_in">len</span>(<span class="hljs-built_in">bin</span>(temp)[<span class="hljs-number">2</span>:])<br>flag=<span class="hljs-string">&#x27;hgame&#123;&#x27;</span>+hashlib.sha256(<span class="hljs-built_in">str</span>(p+q+r).encode()).hexdigest()+<span class="hljs-string">&#x27;&#125;&#x27;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;hint=<span class="hljs-subst">&#123;hint&#125;</span>&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;k1=<span class="hljs-subst">&#123;k1&#125;</span>&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;k2=<span class="hljs-subst">&#123;k2&#125;</span>&#x27;</span>)<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">83</span><br><span class="hljs-string">k1=73715329877215340145951238343247156282165705396074786483256699817651255709671</span><br><span class="hljs-string">k2=61361970662269869738270328523897765408443907198313632410068454223717824276837</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>题面很简单，实际上也应该联想到要构造矩阵去做。</p>
+<p>目标是构造矩阵M使得（p,q,r）*M&#x3D;(temp,q,r)，并且(temp,q,r)应为最短向量。</p>
+<p>故可构造<br>$$<br>B&#x3D;\begin{bmatrix}2^{256} &amp; 0 &amp; 0 \ k_1 &amp; 1 &amp; 0  \ k_2 &amp; 0 &amp; 1  \end{bmatrix}<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">solve_pqr</span>(<span class="hljs-params">k1,k2</span>):<br>M = matrix(ZZ, [[<span class="hljs-number">2</span>^<span class="hljs-number">256</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>],<br>[k1,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>],<br>[k2,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]])<br>Msub = M.LLL()<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(<span class="hljs-built_in">bin</span>(Msub[<span class="hljs-number">0</span>,<span class="hljs-number">2</span>])))<br>v = M.solve_left(Msub[<span class="hljs-number">0</span>])<br>p, q,r = v[<span class="hljs-number">0</span>], v[<span class="hljs-number">1</span>],v[<span class="hljs-number">2</span>]<br><span class="hljs-keyword">return</span> p, q,r<br>k1=<span class="hljs-number">7371532987721534014595123834324715628216570539607478648325669981765125570967</span><br><span class="hljs-number">1</span><br>k2=<span class="hljs-number">6136197066226986973827032852389776540844390719831363241006845422371782427683</span><br><span class="hljs-number">7</span><br>p,q,r=solve_pqr(k1,k2)<br><span class="hljs-built_in">print</span>(p,q,r)<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CTF/" class="print-no-link">#CTF</a>
+      
+        <a href="/tags/Crypto/" class="print-no-link">#Crypto</a>
+      
+        <a href="/tags/Web/" class="print-no-link">#Web</a>
+      
+        <a href="/tags/Misc/" class="print-no-link">#Misc</a>
+      
+        <a href="/tags/Hgame/" class="print-no-link">#Hgame</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2024-Hgame-week3-wp-crypto</div>
+      <div>https://py-thok.github.io/2024/02/25/2024-Hgame-week3-wp-crypto/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>破易Poi</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年2月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/02/25/2024-Hgame-week2-wp-crypto/" title="2024-Hgame-week2-wp-crypto">
+                        <span class="hidden-mobile">2024-Hgame-week2-wp-crypto</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://silver-crumble-1edb9d.netlify.app/.netlify/functions/twikoo","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
