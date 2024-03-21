@@ -1,5 +1,6 @@
-https://py-thok.github.io/2024/03/21/2024-VCTF-wp-crypto/
+https://py-thok.github.io/2024/03/21/%E6%88%91%E6%98%AF%E4%B8%80%E5%9D%A8%E5%B1%8E/
 https://py-thok.github.io/2024/02/24/%E6%9C%80%E8%BF%91/
+https://py-thok.github.io/2024/03/21/2024-VCTF-wp-crypto/
 https://py-thok.github.io/about/index.html
 https://py-thok.github.io/2024/03/20/2024-Hgame-week4-wp-crypto/
 https://py-thok.github.io/2024/02/25/2024-Hgame-week3-wp-crypto/
