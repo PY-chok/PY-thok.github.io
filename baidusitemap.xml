@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://py-thok.github.io/2024/05/27/2024-DKCTF-wp-crypto/</loc>
+    <lastmod>2024-05-27</lastmod>
+  </url>
+  <url>
     <loc>https://py-thok.github.io/2024/03/21/%E6%88%91%E6%98%AF%E4%B8%80%E5%9D%A8%E5%B1%8E/</loc>
     <lastmod>2024-03-21</lastmod>
   </url>
