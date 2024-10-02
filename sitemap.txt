@@ -1,3 +1,4 @@
+https://py-thok.github.io/2024/10/02/2024-%E6%95%B0%E4%BF%A1%E6%9D%AF%E5%8C%97%E5%8C%BA%E5%8D%8A%E5%86%B3%E8%B5%9B-wp-Crypto/
 https://py-thok.github.io/2024/09/24/2024-TSCTF-J-partWP-crypto/
 https://py-thok.github.io/2024/09/07/2024-%E4%BA%AC%E6%B4%A5%E5%86%80%E6%94%BB%E9%98%B2-wp-crypto/
 https://py-thok.github.io/2024/09/05/2024-%E7%86%B5%E5%AF%86%E6%9D%AF-wp-Crypto/
