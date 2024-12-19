@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://py-thok.github.io/2024/12/19/2024-CISCN-%E9%93%81%E4%BA%BA%E4%B8%89%E9%A1%B9%E5%88%9D%E8%B5%9B-wp-Crypto/</loc>
+    
+    <lastmod>2024-12-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://py-thok.github.io/2024/12/08/2024-HECTF-wp-crypto/</loc>
     
     <lastmod>2024-12-08</lastmod>
@@ -175,7 +184,7 @@
 
   <url>
     <loc>https://py-thok.github.io/</loc>
-    <lastmod>2024-12-08</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -183,49 +192,49 @@
   
   <url>
     <loc>https://py-thok.github.io/tags/CTF/</loc>
-    <lastmod>2024-12-08</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://py-thok.github.io/tags/Crypto/</loc>
-    <lastmod>2024-12-08</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://py-thok.github.io/tags/Web/</loc>
-    <lastmod>2024-12-08</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://py-thok.github.io/tags/Misc/</loc>
-    <lastmod>2024-12-08</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://py-thok.github.io/tags/TSCTF/</loc>
-    <lastmod>2024-12-08</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://py-thok.github.io/tags/live/</loc>
-    <lastmod>2024-12-08</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://py-thok.github.io/tags/Hgame/</loc>
-    <lastmod>2024-12-08</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
