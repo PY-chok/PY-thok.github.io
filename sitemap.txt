@@ -1,3 +1,4 @@
+https://py-thok.github.io/about/index.html
 https://py-thok.github.io/2024/12/19/2024-CISCN-%E9%93%81%E4%BA%BA%E4%B8%89%E9%A1%B9%E5%88%9D%E8%B5%9B-wp-Crypto/
 https://py-thok.github.io/2024/12/08/2024-HECTF-wp-crypto/
 https://py-thok.github.io/2024/11/25/2024-%E5%BC%BA%E7%BD%91%E6%8B%9F%E6%80%81%E7%99%BD%E7%9B%92%E8%B5%84%E6%A0%BC%E8%B5%9B-wp-Crypto/
@@ -5,7 +6,6 @@ https://py-thok.github.io/2024/10/02/2024-%E6%95%B0%E4%BF%A1%E6%9D%AF%E5%8C%97%E
 https://py-thok.github.io/2024/09/24/2024-TSCTF-J-partWP-crypto/
 https://py-thok.github.io/2024/09/07/2024-%E4%BA%AC%E6%B4%A5%E5%86%80%E6%94%BB%E9%98%B2-wp-crypto/
 https://py-thok.github.io/2024/09/05/2024-%E7%86%B5%E5%AF%86%E6%9D%AF-wp-Crypto/
-https://py-thok.github.io/about/index.html
 https://py-thok.github.io/2024/02/25/2024-Hgame-week1-wp-crypto/
 https://py-thok.github.io/2024/07/11/2024-%E6%98%A5%E7%A7%8B%E6%9D%AF%E5%A4%8F%E5%AD%A3%E8%B5%9B-wp-crypto/
 https://py-thok.github.io/2024/05/27/2024-DKCTF-wp-crypto/
